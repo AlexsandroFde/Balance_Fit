@@ -1,28 +1,76 @@
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-  final String label;
+  final String hintText;
+  final String suffixText;
   final TextEditingController controller;
-  final TextInputType keyboardType;
-  final String? Function(String?)? validator; // Adicionado para validação
+  final String? Function(String?)? validator;
+  final String labelText;
 
   CustomTextField({
-    required this.label,
+    Key? key,
+    required this.hintText,
     required this.controller,
-    this.keyboardType = TextInputType.text,
-    this.validator, // Adicionado para validação
-  });
+    required this.suffixText,
+    required this.labelText,
+    this.validator,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      keyboardType: keyboardType,
-      decoration: InputDecoration(
-        labelText: label,
-        border: OutlineInputBorder(),
-      ),
-      validator: validator, // Usando a função de validação
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start, // Alinhamento à esquerda
+      children: [
+        Text(
+          labelText,
+          style: const TextStyle(
+            fontSize: 16, // Tamanho da fonte do label
+            fontWeight: FontWeight.bold, // Fonte em negrito
+          ),
+        ),
+        const SizedBox(height: 4), // Espaço entre o label e o TextFormField
+        SizedBox(
+          height: 62,
+          child: TextFormField(
+            controller: controller,
+            keyboardType: const TextInputType.numberWithOptions(decimal: true),
+            decoration: InputDecoration(
+              hintText: hintText,
+              hintStyle: TextStyle(color: Colors.grey[400]), // Cor do texto de exemplo
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: const BorderSide(color: Colors.blue), // Cor da borda
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8),
+                borderSide: const BorderSide(color: Colors.blue), // Cor da borda quando focado
+              ),
+              contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+              suffixIcon: Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: Align(
+                  heightFactor: 0,
+                  widthFactor: 0,
+                  alignment: Alignment.centerRight,
+                  child: Transform.translate(
+                    offset: Offset(0, -1), // Move o texto 8 pixels para cima
+                    child: Text(
+                      suffixText, // Texto do sufixo
+                      style: TextStyle(fontSize: 16), // Tamanho da fonte do sufixo
+                    ),
+                  ),
+                ),
+              ),
+              errorStyle: const TextStyle(
+                height: 0,
+                fontSize: 12, // Tamanho da fonte da mensagem de erro
+              ),
+            ),
+            style: const TextStyle(fontSize: 16), // Tamanho da fonte
+            validator: validator, // Validação do campo
+          ),
+        ),
+      ],
     );
   }
 }

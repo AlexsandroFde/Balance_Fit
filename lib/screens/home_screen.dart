@@ -3,6 +3,7 @@ import '../services/calculation_service.dart';
 import '../services/storage_service.dart';
 import '../models/calculo_model.dart';
 import '../widgets/custom_text_field.dart';
+import '../widgets/gender_selector.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -72,77 +73,84 @@ class _HomeScreenState extends State<HomeScreen> {
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 20),
-              CustomTextField(
-                label: 'Peso (kg)',
-                controller: pesoController,
-                keyboardType: TextInputType.number,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Por favor, preencha o peso.';
-                  }
-                  return null; // Retorna null se não houver erro
-                },
-              ),
-              SizedBox(height: 10),
-              CustomTextField(
-                label: 'Altura (cm)',
-                controller: alturaController,
-                keyboardType: TextInputType.number,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Por favor, preencha a altura.';
-                  }
-                  return null; // Retorna null se não houver erro
-                },
-              ),
-              SizedBox(height: 10),
-              CustomTextField(
-                label: 'Idade',
-                controller: idadeController,
-                keyboardType: TextInputType.number,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Por favor, preencha a idade.';
-                  }
-                  return null; // Retorna null se não houver erro
-                },
-              ),
-              SizedBox(height: 20),
-              Text(
-                'Gênero',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 10),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Expanded(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: genero == 'Masculino' ? Colors.blueAccent : Colors.grey[300],
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          genero = 'Masculino';
-                        });
+                    child: CustomTextField(
+                      labelText: 'Peso:',
+                      hintText: 'Ex: 73.5',
+                      controller: pesoController,
+                      suffixText: 'kg',
+                      validator: (value) {
+                        setState(() {});
+                        if (value == null || value.isEmpty) {
+                          return 'Insira seu peso'; // Validação de exemplo
+                        }
+                        // Validação para verificar se o peso é um número válido
+                        final number = double.tryParse(value.replaceAll(',', '.'));
+                        if (number == null || number <= 0) {
+                          return 'Insira um peso válido'; // Mensagem de erro
+                        }
+                        return null; // Retorna null se a validação passar
                       },
-                      child: Text('Masculino', style: TextStyle(color: Colors.white)),
                     ),
                   ),
                   SizedBox(width: 10),
                   Expanded(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: genero == 'Feminino' ? Colors.blueAccent : Colors.grey[300],
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-                      ),
-                      onPressed: () {
+                    child: CustomTextField(
+                      labelText: 'Altura:',
+                      hintText: 'Ex: 178',
+                      controller: alturaController,
+                      suffixText: 'cm',
+                      validator: (value) {
+                        setState(() {});
+                        if (value == null || value.isEmpty) {
+                          return 'Insira sua altura'; // Validação de exemplo
+                        }
+                        // Validação para verificar se o peso é um número válido
+                        final number = double.tryParse(value.replaceAll(',', '.'));
+                        if (number == null || number <= 0) {
+                          return 'Insira uma altura válida'; // Mensagem de erro
+                        }
+                        return null; // Retorna null se a validação passar
+                      },
+                    ),
+                  ),
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: CustomTextField(
+                      labelText: 'Idade:',
+                      hintText: 'Ex: 32',
+                      controller: idadeController,
+                      suffixText: 'anos',
+                      validator: (value) {
+                        setState(() {});
+                        if (value == null || value.isEmpty) {
+                          return 'Insira sua idade'; // Validação de exemplo
+                        }
+                        // Validação para verificar se a idade é um número válido
+                        final number = int.tryParse(value);
+                        if (number == null || number <= 0) {
+                          return 'Insira uma idade válida'; // Mensagem de erro
+                        }
+                        return null; // Retorna null se a validação passar
+                      },
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Expanded(
+                    child: GenderSelector(
+                      selectedGender: genero,
+                      onGenderChanged: (newGender) {
                         setState(() {
-                          genero = 'Feminino';
+                          genero = newGender;
                         });
                       },
-                      child: Text('Feminino', style: TextStyle(color: Colors.white)),
                     ),
                   ),
                 ],
