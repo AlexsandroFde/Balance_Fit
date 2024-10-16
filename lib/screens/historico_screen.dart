@@ -34,10 +34,16 @@ class _HistoricoScreenState extends State<HistoricoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Histórico do Último Cálculo'),
+        title: Text('Último Cálculo'),
       ),
       body: Container(
-        color: Colors.lightBlue[50], // Cor de fundo suave
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.blueGrey[50]!, Colors.white],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
         padding: EdgeInsets.all(16.0),
         child: ultimoCalculo == null
             ? Center(child: Text('Nenhum cálculo salvo.'))
@@ -46,6 +52,7 @@ class _HistoricoScreenState extends State<HistoricoScreen> {
           children: [
             Text(
               'Último Cálculo Realizado',
+              textAlign: TextAlign.center,
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blue),
             ),
             SizedBox(height: 20),
@@ -64,7 +71,7 @@ class _HistoricoScreenState extends State<HistoricoScreen> {
             Center(
               child: Text(
                 '${ultimoCalculo!.caloriasDiarias.toStringAsFixed(2)} kcal',
-                style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: Colors.green),
+                style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: Colors.blue),
               ),
             ),
             SizedBox(height: 20),

@@ -8,17 +8,22 @@ class ResultadoScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Resultado das Calorias Diárias'),
+        title: Text('Resultado'),
       ),
       body: Container(
-        color: Colors.lightBlue[50], // Cor de fundo suave
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.blueGrey[50]!, Colors.white],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
         padding: EdgeInsets.all(16.0),
-        child: SingleChildScrollView( // Adicionando SingleChildScrollView
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
             children: [
               Text(
                 'Calorias Diárias Recomendadas',
+                textAlign: TextAlign.center,
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blue),
               ),
               SizedBox(height: 20),
@@ -30,13 +35,14 @@ class ResultadoScreen extends StatelessWidget {
               Center(
                 child: Text(
                   '${calculo.caloriasDiarias.toStringAsFixed(2)} kcal',
-                  style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: Colors.green),
+                  style: TextStyle(fontSize: 36, fontWeight: FontWeight.bold, color: Colors.blue),
                 ),
               ),
               SizedBox(height: 40),
               Text(
                 'Detalhes do Cálculo:',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.blue),
               ),
               SizedBox(height: 10),
               _buildDetailRow('Peso', '${calculo.peso} kg'),
@@ -45,7 +51,6 @@ class ResultadoScreen extends StatelessWidget {
               _buildDetailRow('Gênero', calculo.genero),
               _buildDetailRow('Nível de Atividade', calculo.nivelAtividade),
             ],
-          ),
         ),
       ),
     );

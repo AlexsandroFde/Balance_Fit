@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import '../services/calculation_service.dart';
 import '../services/storage_service.dart';
 import '../models/calculo_model.dart';
+import '../widgets/custom_dropdown_field.dart';
 import '../widgets/custom_text_field.dart';
-import '../widgets/gender_selector.dart';
+import '../widgets/custom_selector.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -57,7 +58,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.lightBlue[50]!, Colors.white],
+            colors: [Colors.blueGrey[50]!, Colors.white],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -144,62 +145,61 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   SizedBox(width: 10),
                   Expanded(
-                    child: GenderSelector(
-                      selectedGender: genero,
-                      onGenderChanged: (newGender) {
+                    child: CustomSelector(
+                      labelText: 'Gênero:',
+                      items: ['Masculino', 'Feminino'],
+                      onChanged: (newGender) {
                         setState(() {
                           genero = newGender;
                         });
+                      },
+                      selectedValue: genero,
+                      itemIcons: {
+                        'Masculino': IconData(0xf0538, fontFamily: 'MaterialIcons'),
+                        'Feminino': IconData(0xf05ab, fontFamily: 'MaterialIcons'),
                       },
                     ),
                   ),
                 ],
               ),
-              SizedBox(height: 20),
-              DropdownButtonFormField(
+              CustomDropdownField(
+                labelText: 'Nível de Atividade:',
                 value: nivelAtividade,
-                items: ['Sedentário', 'Levemente ativo', 'Moderadamente ativo', 'Muito ativo'].map((String value) {
-                  return DropdownMenuItem(value: value, child: Text(value));
-                }).toList(),
+                items: ['Sedentário', 'Levemente ativo', 'Moderadamente ativo', 'Muito ativo'],
                 onChanged: (newValue) {
                   setState(() {
-                    nivelAtividade = newValue.toString();
+                    nivelAtividade = newValue!;
                   });
                 },
-                decoration: InputDecoration(
-                  labelText: 'Nível de Atividade',
-                  border: OutlineInputBorder(),
-                ),
+              ),
+              CustomSelector<String>(
+                labelText: 'Objetivo:',
+                selectedValue: objetivo,
+                items: ['Perda de peso', 'Ganho de peso'],
+                onChanged: (newValue) {
+                  setState(() {
+                    objetivo = newValue;
+                  });
+                },
               ),
               SizedBox(height: 10),
-              DropdownButtonFormField(
-                value: objetivo,
-                items: ['Perda de peso', 'Ganho de peso'].map((String value) {
-                  return DropdownMenuItem(value: value, child: Text(value));
-                }).toList(),
-                onChanged: (newValue) {
-                  setState(() {
-                    objetivo = newValue.toString();
-                  });
-                },
-                decoration: InputDecoration(
-                  labelText: 'Objetivo',
-                  border: OutlineInputBorder(),
-                ),
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  if (_formKey.currentState!.validate()) {
-                    calcular();
-                  }
-                },
-                child: Text('Calcular Calorias'),
-                style: ElevatedButton.styleFrom(
-                  padding: EdgeInsets.symmetric(vertical: 15),
-                  textStyle: TextStyle(fontSize: 18),
-                  primary: Colors.blueAccent,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width * 0.25),
+                child: ElevatedButton(
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      calcular();
+                    }
+                  },
+                  child: Text('Calcular Calorias',
+                      textAlign: TextAlign.center,
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    minimumSize: const Size(double.infinity, 56),
+                    backgroundColor: Colors.blueAccent,
+                    textStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                  ),
                 ),
               ),
             ],

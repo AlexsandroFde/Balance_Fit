@@ -41,10 +41,6 @@ class CustomTextField extends StatelessWidget {
                 borderRadius: BorderRadius.circular(8),
                 borderSide: const BorderSide(color: Colors.blue), // Cor da borda
               ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(color: Colors.blue), // Cor da borda quando focado
-              ),
               contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
               suffixIcon: Padding(
                 padding: const EdgeInsets.only(right: 8),
@@ -53,10 +49,10 @@ class CustomTextField extends StatelessWidget {
                   widthFactor: 0,
                   alignment: Alignment.centerRight,
                   child: Transform.translate(
-                    offset: Offset(0, -1), // Move o texto 8 pixels para cima
+                    offset: Offset(0, -1),
                     child: Text(
                       suffixText, // Texto do sufixo
-                      style: TextStyle(fontSize: 16), // Tamanho da fonte do sufixo
+                      style: TextStyle(fontSize: 16),
                     ),
                   ),
                 ),
