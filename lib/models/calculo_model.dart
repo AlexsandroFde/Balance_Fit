@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 class CalculoModel {
   final double peso;
   final double altura;
@@ -39,5 +41,17 @@ class CalculoModel {
       objetivo: map['objetivo'],
       caloriasDiarias: map['caloriasDiarias'],
     );
+  }
+
+  // Método para converter a instância em JSON
+  String toJson() {
+    final jsonMap = toMap();
+    return jsonEncode(jsonMap);
+  }
+
+  // Método para criar a instância a partir de JSON
+  factory CalculoModel.fromJson(String source) {
+    final map = jsonDecode(source);
+    return CalculoModel.fromMap(map);
   }
 }
