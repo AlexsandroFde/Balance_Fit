@@ -11,7 +11,6 @@ Balance Fit é um aplicativo desenvolvido em Flutter que auxilia os usuários a 
 
 - **Flutter:** Framework para desenvolvimento de aplicativos móveis.
 - **Dart:** Linguagem de programação utilizada para construir o aplicativo.
-- **Provider:** Gerenciamento de estado para facilitar a troca de informações entre diferentes partes do aplicativo.
 - **Shared Preferences:** Armazenamento local para salvar o histórico de cálculos.
 
 ## Instalação
