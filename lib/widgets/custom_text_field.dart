@@ -31,7 +31,7 @@ class CustomTextField extends StatelessWidget {
         ),
         const SizedBox(height: 4),
         SizedBox(
-          height: 62,
+          height: 72,
           child: TextFormField(
             controller: controller,
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
@@ -39,8 +39,18 @@ class CustomTextField extends StatelessWidget {
               hintText: hintText,
               hintStyle: TextStyle(color: AppColors.hintText),
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(color: AppColors.theme),
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: const BorderSide(
+                  color: AppColors.theme,
+                  width: 1.5,
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: const BorderSide(
+                  color: AppColors.theme,
+                  width: 1.5,
+                ),
               ),
               contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
               suffixIcon: Padding(

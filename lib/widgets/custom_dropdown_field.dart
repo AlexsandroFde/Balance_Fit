@@ -61,8 +61,18 @@ class CustomDropdownField extends StatelessWidget {
             decoration: InputDecoration(
               contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
               border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8),
-                borderSide: BorderSide(color: AppColors.primary),
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: const BorderSide(
+                  color: AppColors.theme,
+                  width: 1.5,
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: const BorderSide(
+                  color: AppColors.theme,
+                  width: 1.5,
+                ),
               ),
             ),
             dropdownColor: AppColors.white,

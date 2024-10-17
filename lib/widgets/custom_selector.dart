@@ -79,7 +79,7 @@ class CustomSelectorState<T> extends State<CustomSelector<T>> {
             );
           }),
         ),
-        const SizedBox(height: 14),
+        const SizedBox(height: 24),
       ],
     );
   }
