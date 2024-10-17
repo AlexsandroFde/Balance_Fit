@@ -1,6 +1,6 @@
-# Balance Fit
+# BalanceFit
 
-Balance Fit é um aplicativo desenvolvido em Flutter que auxilia os usuários a calcular a ingestão diária recomendada de calorias com base no seu perfil físico e objetivos de saúde. O aplicativo é projetado com uma interface intuitiva e responsiva, proporcionando uma experiência de usuário agradável.
+BalanceFit é um aplicativo desenvolvido em Flutter que auxilia os usuários a calcular a ingestão diária recomendada de calorias com base no seu perfil físico e objetivos de saúde. O aplicativo é projetado com uma interface intuitiva, proporcionando uma experiência de usuário agradável.
 
 ## Funcionalidades
 
