@@ -1,3 +1,4 @@
+import 'package:balance_fit/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomDropdownField extends StatelessWidget {
@@ -38,21 +39,20 @@ class CustomDropdownField extends StatelessWidget {
                   item,
                   style: TextStyle(
                     fontSize: 16,
-                    color: value == item ? Colors.blue : Colors.black,
+                    color: value == item ? AppColors.theme : AppColors.black,
                     fontWeight: value == item ? FontWeight.bold : FontWeight.normal,
                   ),
                 ),
               );
             }).toList(),
             onChanged: onChanged,
-            // Usando selectedItemBuilder para personalizar a exibição do item selecionado no campo
             selectedItemBuilder: (BuildContext context) {
               return items.map((String item) {
                 return Text(
                   item,
                   style: const TextStyle(
                     fontSize: 16,
-                    color: Colors.black, // Cor fixa para o campo de exibição
+                    color: AppColors.black,
                     fontWeight: FontWeight.normal,
                   ),
                 );
@@ -62,10 +62,10 @@ class CustomDropdownField extends StatelessWidget {
               contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(color: Colors.blue),
+                borderSide: BorderSide(color: AppColors.primary),
               ),
             ),
-            dropdownColor: Colors.white,
+            dropdownColor: AppColors.white,
           ),
         ),
       ],

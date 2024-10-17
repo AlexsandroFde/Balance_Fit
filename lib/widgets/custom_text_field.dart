@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constants/app_colors.dart';
 
 class CustomTextField extends StatelessWidget {
   final String hintText;
@@ -7,7 +8,7 @@ class CustomTextField extends StatelessWidget {
   final String? Function(String?)? validator;
   final String labelText;
 
-  CustomTextField({
+  const CustomTextField({
     Key? key,
     required this.hintText,
     required this.controller,
@@ -19,16 +20,16 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.start, // Alinhamento à esquerda
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           labelText,
           style: const TextStyle(
-            fontSize: 16, // Tamanho da fonte do label
-            fontWeight: FontWeight.bold, // Fonte em negrito
+            fontSize: 16,
+            fontWeight: FontWeight.bold,
           ),
         ),
-        const SizedBox(height: 4), // Espaço entre o label e o TextFormField
+        const SizedBox(height: 4),
         SizedBox(
           height: 62,
           child: TextFormField(
@@ -36,10 +37,10 @@ class CustomTextField extends StatelessWidget {
             keyboardType: const TextInputType.numberWithOptions(decimal: true),
             decoration: InputDecoration(
               hintText: hintText,
-              hintStyle: TextStyle(color: Colors.grey[400]), // Cor do texto de exemplo
+              hintStyle: TextStyle(color: AppColors.hintText),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8),
-                borderSide: const BorderSide(color: Colors.blue), // Cor da borda
+                borderSide: const BorderSide(color: AppColors.theme),
               ),
               contentPadding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
               suffixIcon: Padding(
@@ -49,21 +50,21 @@ class CustomTextField extends StatelessWidget {
                   widthFactor: 0,
                   alignment: Alignment.centerRight,
                   child: Transform.translate(
-                    offset: Offset(0, -1),
+                    offset: const Offset(0, -1),
                     child: Text(
-                      suffixText, // Texto do sufixo
-                      style: TextStyle(fontSize: 16),
+                      suffixText,
+                      style: const TextStyle(fontSize: 16),
                     ),
                   ),
                 ),
               ),
               errorStyle: const TextStyle(
                 height: 0,
-                fontSize: 12, // Tamanho da fonte da mensagem de erro
+                fontSize: 12,
               ),
             ),
-            style: const TextStyle(fontSize: 16), // Tamanho da fonte
-            validator: validator, // Validação do campo
+            style: const TextStyle(fontSize: 16),
+            validator: validator,
           ),
         ),
       ],

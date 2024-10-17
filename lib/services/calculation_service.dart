@@ -1,36 +1,36 @@
-double calcularTMB(double peso, double altura, int idade, String genero) {
-  if (genero == 'Masculino') {
-    return 88.362 + (13.397 * peso) + (4.799 * altura) - (5.677 * idade);
+double calculateTMB(double weight, double height, int age, String gender) {
+  if (gender == 'Masculino') {
+    return 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
   } else {
-    return 447.593 + (9.247 * peso) + (3.098 * altura) - (4.330 * idade);
+    return 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
   }
 }
 
-double calcularCaloriasDiarias(double tmb, String nivelAtividade, String objetivo) {
-  double fatorAtividade;
+double calculateDailyCalories(double tmb, String activityLevel, String objective) {
+  double activityFactor;
 
-  switch (nivelAtividade) {
+  switch (activityLevel) {
     case 'Sedentário':
-      fatorAtividade = 1.2;
+      activityFactor = 1.2;
       break;
     case 'Levemente ativo':
-      fatorAtividade = 1.375;
+      activityFactor = 1.375;
       break;
     case 'Moderadamente ativo':
-      fatorAtividade = 1.55;
+      activityFactor = 1.55;
       break;
     case 'Muito ativo':
-      fatorAtividade = 1.725;
+      activityFactor = 1.725;
       break;
     default:
-      fatorAtividade = 1.0;
+      activityFactor = 1.0;
   }
 
-  double caloriasDiarias = tmb * fatorAtividade;
+  double dailyCalories = tmb * activityFactor;
 
-  if (objetivo == 'Perda de peso') {
-    return caloriasDiarias * 0.8;
+  if (objective == 'Perda de peso') {
+    return dailyCalories * 0.8;
   } else {
-    return caloriasDiarias * 1.15;
+    return dailyCalories * 1.15;
   }
 }

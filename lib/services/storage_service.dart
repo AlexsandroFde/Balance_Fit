@@ -1,21 +1,21 @@
 import 'package:shared_preferences/shared_preferences.dart';
-import '../models/calculo_model.dart';
+import '../models/calculation_model.dart';
 
-Future<void> salvarUltimoCalculo(CalculoModel calculo) async {
+Future<void> saveLastCalculation(CalculationModel calculation) async {
   final prefs = await SharedPreferences.getInstance();
-  await prefs.setString('ultimoCalculo', calculo.toJson());
+  await prefs.setString('ultimoCalculo', calculation.toJson());
 }
 
-Future<CalculoModel?> obterUltimoCalculo() async {
+Future<CalculationModel?> getLastCalculation() async {
   final prefs = await SharedPreferences.getInstance();
   final String? jsonString = prefs.getString('ultimoCalculo');
   if (jsonString != null) {
-    return CalculoModel.fromJson(jsonString);
+    return CalculationModel.fromJson(jsonString);
   }
   return null;
 }
 
-Future<void> limparHistorico() async {
+Future<void> clearHistory() async {
   final prefs = await SharedPreferences.getInstance();
   await prefs.remove('ultimoCalculo');
 }

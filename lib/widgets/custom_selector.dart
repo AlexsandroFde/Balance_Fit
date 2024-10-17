@@ -1,3 +1,4 @@
+import 'package:balance_fit/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomSelector<T> extends StatefulWidget {
@@ -5,7 +6,7 @@ class CustomSelector<T> extends StatefulWidget {
   final T selectedValue;
   final List<T> items;
   final ValueChanged<T> onChanged;
-  final Map<T, IconData>? itemIcons; // Ícones opcionais para cada item
+  final Map<T, IconData>? itemIcons;
 
   const CustomSelector({
     Key? key,
@@ -17,10 +18,10 @@ class CustomSelector<T> extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _CustomSelectorState<T> createState() => _CustomSelectorState<T>();
+  CustomSelectorState<T> createState() => CustomSelectorState<T>();
 }
 
-class _CustomSelectorState<T> extends State<CustomSelector<T>> {
+class CustomSelectorState<T> extends State<CustomSelector<T>> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -49,7 +50,7 @@ class _CustomSelectorState<T> extends State<CustomSelector<T>> {
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         minimumSize: const Size(double.infinity, 56),
-                        backgroundColor: isSelected ? Colors.blueAccent : Colors.grey[300],
+                        backgroundColor: isSelected ? AppColors.theme : AppColors.disable,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
                         ),
@@ -60,12 +61,12 @@ class _CustomSelectorState<T> extends State<CustomSelector<T>> {
                       child: itemIcon != null
                           ? Icon(
                         itemIcon,
-                        color: Colors.white,
+                        color: AppColors.white,
                       )
                           : Text(
                         item.toString(),
                         style: const TextStyle(
-                          color: Colors.white,
+                          color: AppColors.white,
                           fontSize: 16,
                         ),
                         textAlign: TextAlign.center,

@@ -1,30 +1,24 @@
+import 'package:balance_fit/constants/app_colors.dart';
 import 'package:flutter/material.dart';
-import 'screens/home_screen.dart';
-import 'screens/resultado_screen.dart';
-import 'screens/historico_screen.dart';
+import 'constants/app_routes.dart';
 
 void main() {
-  runApp(const CalculadoraCaloriasApp());
+  runApp(const MyApp());
 }
 
-class CalculadoraCaloriasApp extends StatelessWidget {
-  const CalculadoraCaloriasApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Calculadora de Calorias',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        appBarTheme: const AppBarTheme(color: AppColors.theme),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      routes: {
-        '/': (context) => HomeScreen(),
-        '/resultado': (context) => ResultadoScreen(),
-        '/historico': (context) => HistoricoScreen(),
-      },
+      initialRoute: AppRoutes.home,
+      routes: AppRoutes.define(),
     );
   }
 }
