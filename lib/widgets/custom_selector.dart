@@ -49,7 +49,7 @@ class CustomSelectorState<T> extends State<CustomSelector<T>> {
                   Expanded(
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        minimumSize: const Size(double.infinity, 56),
+                        minimumSize: const Size(double.infinity, 50),
                         backgroundColor: isSelected ? AppColors.theme : AppColors.disable,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8),
