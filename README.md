@@ -28,7 +28,19 @@ Para executar o projeto localmente, siga as instruções abaixo:
    flutter pub get
    ```
 
-3. Execute o aplicativo:
+## Execute o aplicativo
+
+### No Android Studio
+- Abra o Android Studio e selecione **Open an existing project**.
+- Navegue até a pasta do projeto (Balance_Fit) e clique em OK.
+- No menu superior, clique em **Run** e selecione **Run 'main.dart'**.
+- Certifique-se de que um emulador ou dispositivo físico esteja conectado e selecionado.
+
+### No Visual Studio Code
+- Abra o Visual Studio Code e selecione **File > Open Folder...**.
+- Navegue até a pasta do projeto (Balance_Fit) e clique em Open.
+- No terminal integrado, execute:
    ```bash
    flutter run
    ```
+- Certifique-se de que um emulador ou dispositivo físico esteja conectado.
